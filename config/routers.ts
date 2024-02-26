@@ -12,23 +12,12 @@
  */
 export default [
   {
-    path: '/',
-    redirect: '/account/center',
+    path: '/login',
+    component: '',
   },
   {
     path: '*',
     layout: false,
     component: './404',
-  },
-  {
-    path: '/user',
-    layout: false,
-    routes: [
-      {
-        name: 'login',
-        path: '/user/login',
-        component: './User/Login',
-      },
-    ],
   },
 ];
