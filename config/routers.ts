@@ -13,7 +13,7 @@
 export default [
   {
     path: '/login',
-    component: '',
+    component: './User/Login',
   },
   {
     path: '*',
