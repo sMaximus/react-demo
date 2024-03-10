@@ -18,7 +18,17 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "@root/*": ["./*"],
+      "@src/*": ["src/*"],
+      "@assets/*": ["src/assets/*"],
+      "@pages/*": ["src/pages/*"],
+      "virtual:reload-on-update-in-background-script": ["./src/global.d.ts"],
+      "virtual:reload-on-update-in-view": ["./src/global.d.ts"]
+    }
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
