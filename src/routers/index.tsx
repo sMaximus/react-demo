@@ -8,13 +8,9 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    action: () => {
-      console.warn(879);
-      return 121;
-    },
     children: [
       {
-        path: "home",
+        index: true,
         element: <Home />,
       },
     ],
