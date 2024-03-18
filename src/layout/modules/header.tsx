@@ -18,7 +18,8 @@ const Item: React.FC<{ children: React.ReactNode }> = (props) => {
       `}
       style={{
         width: "33.33%",
-      }}>
+      }}
+    >
       {props.children}
       <DoubleRightOutlined
         style={{

@@ -4,13 +4,14 @@ import Login from "@pages/login";
 import NotFound from "../pages/notFound";
 import Layout from "@src/layout";
 
-const router = createBrowserRouter([
+const router = [
   {
     path: "/",
     element: <Layout />,
     children: [
       {
         index: true,
+        name: "首页",
         element: <Home />,
       },
     ],
@@ -23,6 +24,9 @@ const router = createBrowserRouter([
     path: "*",
     element: <NotFound />,
   },
-]);
+];
 
-export default router;
+const routers = createBrowserRouter(router);
+
+export { router };
+export default routers;

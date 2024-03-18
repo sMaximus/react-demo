@@ -66,3 +66,8 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+:where(.css-dev-only-do-not-override-bdoedb).ant-menu-light .ant-menu-item-selected,
+:where(.css-dev-only-do-not-override-bdoedb).ant-menu-light>.ant-menu .ant-menu-item-selected{
+  background: linear-gradient(270deg, rgba(93, 116, 226, 0.44) 0%, #5D74E2 100%);
+}

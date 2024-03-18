@@ -1,80 +1,65 @@
-import type { ProSettings } from "@ant-design/pro-components";
-import { ProConfigProvider, ProLayout } from "@ant-design/pro-components";
-import { ConfigProvider } from "antd";
-import { useState } from "react";
-import MenuCard from "./modules/MenuCard";
-import defaultProps from "./_defaultProps";
+import { PageHeader, ProLayout } from "@ant-design/pro-components";
+import { Outlet } from "react-router";
+import { router } from "@src/routers";
+import { useEffect, useState } from "react";
+
+interface RouterItem {
+  path: string;
+  index: boolean;
+  name: string;
+  element: Element;
+  routes?: any[];
+  children?: any[];
+}
 
 const Layout = () => {
-  const [settings] = useState<Partial<ProSettings> | undefined>({
-    fixSiderbar: true,
-    splitMenus: true,
-    layout: "side",
-  });
+  const [routers, setRouters] = useState<RouterItem[]>([]);
 
-  const [pathname, setPathname] = useState("/list/sub-page/sub-sub-page1");
-  if (typeof document === "undefined") {
-    return <div />;
-  }
+  useEffect(() => {
+    const transRouter = (routerList: any): RouterItem[] => {
+      return routerList.map((router: RouterItem) => {
+        if (router.index) {
+          router.path = "/";
+        }
+        if (router.children?.length) {
+          router.routes = transRouter(router.children);
+        }
+        return router;
+      });
+    };
+
+    const LayoutRouter =
+      router.find((item) => item.path === "/")?.children || [];
+
+    const newRouter = transRouter(LayoutRouter);
+
+    setRouters(newRouter);
+  }, [router]);
+
   return (
-    <ProConfigProvider hashed={false}>
-      <ConfigProvider
-        getTargetContainer={() => {
-          return document.getElementById("root") || document.body;
-        }}>
-        <ProLayout
-          {...defaultProps}
-          location={{
-            pathname,
-          }}
-          token={{
-            sider: {
-              colorBgMenuItemSelected:
-                "linear-gradient(270deg, rgba(93,116,226,0.44) 0%, #5D74E2 100%)",
-              colorTextMenu: "#A4A9C1",
-            },
-          }}
-          collapsedButtonRender={false}
-          menu={{
-            collapsedShowGroupTitle: true,
-            type: "group",
-          }}
-          actionsRender={(props) => {
-            if (props.isMobile) return [];
-            if (typeof window === "undefined") return [];
-            return [<div>2024-04-23 星期二</div>];
-          }}
-          headerTitleRender={(logo, title, _) => {
-            const defaultDom = (
-              <a>
-                {logo}
-                {title}
-              </a>
-            );
-            if (typeof window === "undefined") return defaultDom;
-            if (document.body.clientWidth < 1400) {
-              return defaultDom;
-            }
-            if (_.isMobile) return defaultDom;
-            return (
-              <>
-                {defaultDom}
-                <MenuCard />
-              </>
-            );
-          }}
-          onMenuHeaderClick={(e) => console.log(e)}
-          menuItemRender={(item, dom) => (
-            <div
-              onClick={() => {
-                setPathname(item.path || "/");
-              }}>
-              {dom}
-            </div>
-          )}
-          {...settings}></ProLayout>
-      </ConfigProvider>
-    </ProConfigProvider>
+    <div
+      style={{
+        height: "100vh",
+      }}
+    >
+      <ProLayout
+        title="工时系统"
+        pageTitleRender={() => {
+          return "工时系统";
+        }}
+        logo={false}
+        location={{
+          pathname: "/",
+        }}
+        collapsedButtonRender={false}
+        route={{
+          routes: [...routers],
+        }}
+      >
+        <PageHeader></PageHeader>
+        <Outlet />
+      </ProLayout>
+    </div>
   );
 };
 
