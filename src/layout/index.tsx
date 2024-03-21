@@ -1,9 +1,9 @@
-import { PageHeader, ProLayout } from "@ant-design/pro-components";
+import { ProLayout } from "@ant-design/pro-components";
 import { Outlet } from "react-router";
 import { router } from "@src/routers";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { MenuFoldOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
+import Navbar from "./modules/Navbar";
 
 interface RouterItem {
   path: string;
@@ -16,7 +16,7 @@ interface RouterItem {
 
 const Layout = () => {
   const [routers, setRouters] = useState<RouterItem[]>([]);
-  const navigate = useNavigate();
+  const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
     const transRouter = (routerList: any): RouterItem[] => {
@@ -43,6 +43,8 @@ const Layout = () => {
     <div
       style={{
         height: "100vh",
+        width: "100vw",
+        background: "#EBEFF3",
       }}>
       <ProLayout
         title="书生运营管理平台"
@@ -62,19 +64,23 @@ const Layout = () => {
             colorTextMenuItemHover: "#FFFFFF",
           },
         }}
+        breakpoint={false}
+        collapsed={collapsed}
+        contentStyle={{
+          padding: 0,
+          background: "#EBEFF3",
+        }}
         collapsedButtonRender={false}
         route={{
           routes: [...routers],
         }}
         menuItemRender={(item, dom) => (
-          <div
-            onClick={() => {
-              navigate(item.path || "/");
-            }}>
-            {dom}
-          </div>
+          <Link to={item.path || "/"}>{dom}</Link>
         )}>
-        <PageHeader tabActiveKey={Date.now()} />
+        <Navbar
+          collapsed={collapsed}
+          onCollapse={() => setCollapsed(!collapsed)}
+        />
         <Outlet />
       </ProLayout>
     </div>
