@@ -5,7 +5,7 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
 } from "@ant-design/icons";
-import { Avatar, Dropdown, Space } from "antd";
+import { Dropdown, MenuProps, Space } from "antd";
 import styles from "./index.module.less";
 
 interface NavbarProps {
@@ -15,6 +15,14 @@ interface NavbarProps {
 
 const Navbar: FC<NavbarProps> = ({ collapsed, onCollapse }) => {
   const now = new Date().toLocaleString();
+  const items: MenuProps["items"] = [
+    {
+      key: "4",
+      danger: true,
+      label: "退出登录",
+    },
+  ];
+
   return (
     <PageHeader className={styles.pageHeader}>
       <div className={styles.content}>
@@ -31,7 +39,7 @@ const Navbar: FC<NavbarProps> = ({ collapsed, onCollapse }) => {
             <span className={styles.avatarBar}>
               {/* <Avatar size={40} src={avatar.src} /> */}
             </span>
-            <Dropdown>
+            <Dropdown menu={{ items }}>
               <a onClick={(e) => e.preventDefault()}>
                 <Space>
                   期限生活

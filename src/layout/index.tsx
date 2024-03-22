@@ -44,7 +44,6 @@ const Layout = () => {
       style={{
         height: "100vh",
         width: "100vw",
-        background: "#EBEFF3",
       }}>
       <ProLayout
         title="书生运营管理平台"
@@ -69,6 +68,7 @@ const Layout = () => {
         contentStyle={{
           padding: 0,
           background: "#EBEFF3",
+          height: "100vh",
         }}
         collapsedButtonRender={false}
         route={{
@@ -81,6 +81,7 @@ const Layout = () => {
           collapsed={collapsed}
           onCollapse={() => setCollapsed(!collapsed)}
         />
+
         <Outlet />
       </ProLayout>
     </div>
