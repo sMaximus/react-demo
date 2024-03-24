@@ -23,6 +23,7 @@ const Layout = () => {
       return routerList.map((router: RouterItem) => {
         if (router.index) {
           router.path = "/";
+          console.warn(121);
         }
         if (router.children?.length) {
           router.routes = transRouter(router.children);
