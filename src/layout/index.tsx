@@ -37,14 +37,15 @@ const Layout = () => {
     const newRouter = transRouter(LayoutRouter);
 
     setRouters(newRouter);
-  }, [router]);
+  }, []);
 
   return (
     <div
       style={{
         height: "100vh",
         width: "100vw",
-      }}>
+      }}
+    >
       <ProLayout
         title="书生运营管理平台"
         pageTitleRender={() => {
@@ -74,9 +75,8 @@ const Layout = () => {
         route={{
           routes: [...routers],
         }}
-        menuItemRender={(item, dom) => (
-          <Link to={item.path || "/"}>{dom}</Link>
-        )}>
+        menuItemRender={(item, dom) => <Link to={item.path || "/"}>{dom}</Link>}
+      >
         <Navbar
           collapsed={collapsed}
           onCollapse={() => setCollapsed(!collapsed)}

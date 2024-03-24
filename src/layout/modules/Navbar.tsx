@@ -7,6 +7,7 @@ import {
 } from "@ant-design/icons";
 import { Dropdown, MenuProps, Space } from "antd";
 import styles from "./index.module.less";
+import dayjs from "dayjs";
 
 interface NavbarProps {
   collapsed: boolean;
@@ -14,7 +15,8 @@ interface NavbarProps {
 }
 
 const Navbar: FC<NavbarProps> = ({ collapsed, onCollapse }) => {
-  const now = new Date().toLocaleString();
+  const now = dayjs().format("YYYY-MM-DD dddd");
+
   const items: MenuProps["items"] = [
     {
       key: "4",
