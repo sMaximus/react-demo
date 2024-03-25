@@ -1,4 +1,4 @@
-import { ProLayout } from "@ant-design/pro-components";
+import { PageContainer, ProLayout } from "@ant-design/pro-components";
 import { Outlet } from "react-router";
 import { router } from "@src/routers";
 import { useEffect, useState } from "react";
@@ -45,8 +45,7 @@ const Layout = () => {
       style={{
         height: "100vh",
         width: "100vw",
-      }}
-    >
+      }}>
       <ProLayout
         title="书生运营管理平台"
         pageTitleRender={() => {
@@ -57,6 +56,7 @@ const Layout = () => {
           pathname: "/",
         }}
         token={{
+          bgLayout: "#EBEFF3",
           sider: {
             colorMenuBackground: "#0F1337",
             colorTextMenuTitle: "#FFFFFF",
@@ -67,23 +67,25 @@ const Layout = () => {
         }}
         breakpoint={false}
         collapsed={collapsed}
-        contentStyle={{
-          padding: 0,
-          background: "#EBEFF3",
-          height: "100vh",
-        }}
         collapsedButtonRender={false}
         route={{
           routes: [...routers],
         }}
-        menuItemRender={(item, dom) => <Link to={item.path || "/"}>{dom}</Link>}
-      >
+        menuItemRender={(item, dom) => (
+          <Link to={item.path || "/"}>{dom}</Link>
+        )}>
         <Navbar
           collapsed={collapsed}
           onCollapse={() => setCollapsed(!collapsed)}
         />
-
-        <Outlet />
+        <PageContainer
+          header={{
+            title: "",
+            style: {
+              padding: "12px 24px",
+            },
+          }}
+          content={<Outlet />}></PageContainer>
       </ProLayout>
     </div>
   );
