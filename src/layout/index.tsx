@@ -1,9 +1,14 @@
-import { PageContainer, ProLayout } from "@ant-design/pro-components";
+import {
+  MenuDataItem,
+  PageContainer,
+  ProLayout,
+} from "@ant-design/pro-components";
 import { Outlet } from "react-router";
 import { router } from "@src/routers";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "./modules/Navbar";
+import Styles from "./index.module.less";
 
 interface RouterItem {
   path: string;
@@ -47,9 +52,11 @@ const Layout = () => {
         width: "100vw",
       }}>
       <ProLayout
-        title="书生运营管理平台"
+        menuHeaderRender={() => (
+          <div className={Styles.pageSideTitle}>书生工时系统</div>
+        )}
         pageTitleRender={() => {
-          return "书生运营管理平台";
+          return "书生工时系统";
         }}
         logo={false}
         location={{
@@ -71,9 +78,10 @@ const Layout = () => {
         route={{
           routes: [...routers],
         }}
-        menuItemRender={(item, dom) => (
-          <Link to={item.path || "/"}>{dom}</Link>
-        )}>
+        menuItemRender={(
+          itemProps: MenuDataItem,
+          defaultDom: React.ReactNode
+        ) => <Link to={itemProps.path || "/"}>{defaultDom}</Link>}>
         <Navbar
           collapsed={collapsed}
           onCollapse={() => setCollapsed(!collapsed)}

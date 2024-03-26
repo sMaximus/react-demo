@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #ebeff3;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -25,7 +25,6 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
   min-width: 100vw;
   min-height: 100vh;
 }
@@ -67,11 +66,11 @@ button:focus-visible {
   }
 }
 
-.ant-menu-item-selected,
-.ant-menu-item-active {
-  background: linear-gradient(
-    270deg,
-    rgba(93, 116, 226, 0.44) 0%,
-    #5d74e2 100%
-  );
+.ant-pro-base-menu-inline-icon {
+  width: 24px;
+}
+
+.ant-menu-item {
+  height: 50px;
+  line-height: 50px;
 }

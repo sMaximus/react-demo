@@ -1,19 +1,23 @@
-import { Card, Col, Image, Row } from "antd";
+import { Card, Col, Image, Row, Space, Table, Tag } from "antd";
 import dayjs from "dayjs";
 import styles from "../index.module.less";
 import timeIcon from "@assets/images/icon_time_c.png";
 import { FC } from "react";
 
+const { Column } = Table;
+
 const cardBodyStyle: {
-  padding: string;
+  padding: number;
   borderLeft: string;
   borderRadius: number;
   background: string;
+  marginBottom: number;
 } = {
-  padding: "14px",
+  padding: 14,
   borderLeft: "5px solid #5D74E2",
   borderRadius: 0,
   background: "#F8F8FC",
+  marginBottom: 16,
 };
 
 const Info: FC<{
@@ -27,6 +31,42 @@ const Info: FC<{
     </div>
   );
 };
+
+interface DataType {
+  key: React.Key;
+  firstName: string;
+  lastName: string;
+  age: number;
+  address: string;
+  tags: string[];
+}
+
+const data: DataType[] = [
+  {
+    key: "1",
+    firstName: "John",
+    lastName: "Brown",
+    age: 32,
+    address: "New York No. 1 Lake Park",
+    tags: ["nice", "developer"],
+  },
+  {
+    key: "2",
+    firstName: "Jim",
+    lastName: "Green",
+    age: 42,
+    address: "London No. 1 Lake Park",
+    tags: ["loser"],
+  },
+  {
+    key: "3",
+    firstName: "Joe",
+    lastName: "Black",
+    age: 32,
+    address: "Sydney No. 1 Lake Park",
+    tags: ["cool", "teacher"],
+  },
+];
 
 const Yesterday = () => {
   const now = dayjs().format("YYYY-MM-DD");
@@ -68,6 +108,27 @@ const Yesterday = () => {
           </Col>
         </Row>
       </Card>
+
+      <Table dataSource={data}>
+        <Column
+          title="序号"
+          key="index"
+          render={(_text: any, _record: any, index: number) => <>{index + 1}</>}
+        />
+        <Column title="项目名称" dataIndex="address" key="address" />
+        <Column title="部门" dataIndex="tags" key="tags" />
+        <Column title="姓名" dataIndex="tags" key="tags" />
+        <Column
+          title="填报工时"
+          key="action"
+          render={(_: any, record: DataType) => (
+            <Space size="middle">
+              <a>Invite {record.lastName}</a>
+              <a>Delete</a>
+            </Space>
+          )}
+        />
+      </Table>
     </Card>
   );
 };

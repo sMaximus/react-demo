@@ -15,6 +15,7 @@ const Workspace = () => {
         gutter={24}
         style={{
           marginTop: 24,
+          flex: 1,
         }}>
         <Col xl={16} lg={24} md={24} sm={24} xs={24}>
           <Yesterday />

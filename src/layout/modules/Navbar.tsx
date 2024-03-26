@@ -6,7 +6,7 @@ import {
   MenuUnfoldOutlined,
 } from "@ant-design/icons";
 import { Dropdown, MenuProps, Space } from "antd";
-import styles from "./index.module.less";
+import styles from "../index.module.less";
 import dayjs from "dayjs";
 
 interface NavbarProps {
