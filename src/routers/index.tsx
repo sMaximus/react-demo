@@ -4,7 +4,7 @@ import NotFound from "@pages/NotFound";
 import Layout from "@src/layout";
 import Workspace from "@pages/Workspace";
 import Contract from "@pages/Contract";
-import Logs from "@pages/Logs";
+import Logs from "@root/src/pages/Syslogs";
 import Organizational from "@pages/Organizational";
 import Project from "@pages/Project";
 import Statistics from "@pages/Statistics";

@@ -1,6 +1,3 @@
-const NotFound = () => {
-  console.warn(2112);
-  return <>1212</>;
-};
+const NotFound = () => <></>;
 
 export default NotFound;
