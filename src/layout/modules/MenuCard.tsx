@@ -52,7 +52,7 @@ const MenuCard = () => {
                 `}>
                 热门产品
               </div>
-              {new Array(3).fill(1).map((name, index) => {
+              {new Array(3).fill(1).map((_name, index) => {
                 return (
                   <div
                     key={index}
