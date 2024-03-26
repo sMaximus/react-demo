@@ -4,16 +4,26 @@ import styles from "../index.module.less";
 import timeIcon from "@assets/images/icon_time_c.png";
 import { FC } from "react";
 
+const cardBodyStyle: {
+  padding: string;
+  borderLeft: string;
+  borderRadius: number;
+  background: string;
+} = {
+  padding: "14px",
+  borderLeft: "5px solid #5D74E2",
+  borderRadius: 0,
+  background: "#F8F8FC",
+};
+
 const Info: FC<{
-  title: React.ReactNode;
-  value: React.ReactNode;
-  bordered?: boolean;
-}> = ({ title, value, bordered }) => {
+  time: React.ReactNode;
+  context: React.ReactNode;
+}> = ({ time, context }) => {
   return (
     <div>
-      <span>{title}</span>
-      <p>{value}</p>
-      {bordered && <em />}
+      <span className={styles.yesterdayTitleFont}>{time}</span>
+      <span className={styles.yesterdayFontColor}>{context}</span>
     </div>
   );
 };
@@ -36,16 +46,25 @@ const Yesterday = () => {
           {now}
         </div>
       }>
-      <Card bordered={false}>
+      <Card bordered={false} styles={{ body: cardBodyStyle }}>
         <Row>
-          <Col sm={8} xs={24}>
-            <Info title="我的待办" value="8个任务" bordered />
+          <Col sm={4} xs={24}>
+            <Info time="5" context="被填写项目(数)" />
           </Col>
-          <Col sm={8} xs={24}>
-            <Info title="本周任务平均处理时间" value="32分钟" bordered />
+          <Col sm={4} xs={24}>
+            <Info time="2" context="工时填写(人)" />
           </Col>
-          <Col sm={8} xs={24}>
-            <Info title="本周完成任务数" value="24个任务" />
+          <Col sm={4} xs={24}>
+            <Info time="16" context="填写总工时(小时)" />
+          </Col>
+          <Col sm={4} xs={24}>
+            <Info time="8" context="公司工时(小时)" />
+          </Col>{" "}
+          <Col sm={4} xs={24}>
+            <Info time="8" context="外出工时(小时)" />
+          </Col>{" "}
+          <Col sm={4} xs={24}>
+            <Info time="4" context="出差工时(小时)" />
           </Col>
         </Row>
       </Card>
