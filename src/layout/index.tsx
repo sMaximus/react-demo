@@ -6,7 +6,7 @@ import {
 import { Outlet } from "react-router";
 import { router } from "@src/routers";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Navbar from "./modules/Navbar";
 import Styles from "./index.module.less";
 
@@ -22,6 +22,7 @@ interface RouterItem {
 const Layout = () => {
   const [routers, setRouters] = useState<RouterItem[]>([]);
   const [collapsed, setCollapsed] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const transRouter = (routerList: any): RouterItem[] => {
@@ -60,7 +61,7 @@ const Layout = () => {
         }}
         logo={false}
         location={{
-          pathname: "/",
+          pathname: location.pathname || "/",
         }}
         token={{
           bgLayout: "#EBEFF3",
@@ -71,6 +72,9 @@ const Layout = () => {
             colorTextMenuSelected: "#FFFFFF",
             colorTextMenuItemHover: "#FFFFFF",
           },
+        }}
+        contentStyle={{
+          height: "100vh",
         }}
         breakpoint={false}
         collapsed={collapsed}
@@ -86,14 +90,10 @@ const Layout = () => {
           collapsed={collapsed}
           onCollapse={() => setCollapsed(!collapsed)}
         />
-        <PageContainer
-          header={{
-            title: "",
-            style: {
-              padding: "12px 24px",
-            },
-          }}
-          content={<Outlet />}></PageContainer>
+
+        <div style={{ padding: "12px 24px", minHeight: "calc(100vh - 58px)" }}>
+          <Outlet />
+        </div>
       </ProLayout>
     </div>
   );

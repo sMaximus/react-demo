@@ -1,4 +1,4 @@
-import { Card, Col, Image, Row, Space, Table, Tag } from "antd";
+import { Card, Col, Image, Row, Space, Table } from "antd";
 import dayjs from "dayjs";
 import styles from "../index.module.less";
 import timeIcon from "@assets/images/icon_time_c.png";
@@ -73,7 +73,7 @@ const Yesterday = () => {
   return (
     <Card
       style={{
-        marginBottom: 24,
+        height: 606,
       }}
       title={<div className={styles.yesterdayTitle}>昨日提交情况</div>}
       bordered={false}

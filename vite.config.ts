@@ -25,8 +25,9 @@ export default defineConfig({
     alias: {
       "@root": rootDir,
       "@src": srcDir,
-      "@assets": resolve(srcDir, "assets"),
       "@pages": pageDir,
+      "@assets": resolve(srcDir, "assets"),
+      "@components": resolve(srcDir, "components"),
     },
   },
 });
