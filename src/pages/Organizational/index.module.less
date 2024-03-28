@@ -1,0 +1,33 @@
+.dept-title {
+  display: flex;
+  align-items: center;
+  padding-bottom: 16px;
+
+  &:before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 18px;
+    background: #5D74E2;
+    margin-right: 8px;
+  }
+
+  &:after {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: #f00;
+    margin-left: 6px;
+    cursor: pointer;
+    transition: all ease-in-out 0.3s;
+  }
+
+  .refresh {
+    transform: rotate(180deg);
+  }
+}
+
+.cart-box {
+  height: calc(100vh - 96px)
+}

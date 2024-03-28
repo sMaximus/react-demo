@@ -1,8 +1,4 @@
-import {
-  MenuDataItem,
-  PageContainer,
-  ProLayout,
-} from "@ant-design/pro-components";
+import { MenuDataItem, ProLayout } from "@ant-design/pro-components";
 import { Outlet } from "react-router";
 import { router } from "@src/routers";
 import { useEffect, useState } from "react";
@@ -51,7 +47,8 @@ const Layout = () => {
       style={{
         height: "100vh",
         width: "100vw",
-      }}>
+      }}
+    >
       <ProLayout
         menuHeaderRender={() => (
           <div className={Styles.pageSideTitle}>书生工时系统</div>
@@ -75,6 +72,7 @@ const Layout = () => {
         }}
         contentStyle={{
           height: "100vh",
+          padding: 0,
         }}
         breakpoint={false}
         collapsed={collapsed}
@@ -85,13 +83,14 @@ const Layout = () => {
         menuItemRender={(
           itemProps: MenuDataItem,
           defaultDom: React.ReactNode
-        ) => <Link to={itemProps.path || "/"}>{defaultDom}</Link>}>
+        ) => <Link to={itemProps.path || "/"}>{defaultDom}</Link>}
+      >
         <Navbar
           collapsed={collapsed}
           onCollapse={() => setCollapsed(!collapsed)}
         />
 
-        <div style={{ padding: "12px 24px", minHeight: "calc(100vh - 58px)" }}>
+        <div className={Styles.pageContainer}>
           <Outlet />
         </div>
       </ProLayout>

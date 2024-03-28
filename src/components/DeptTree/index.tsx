@@ -126,7 +126,7 @@ const DeptTree: React.FC = () => {
     <div>
       <Search
         style={{ marginBottom: 8 }}
-        placeholder="Search"
+        placeholder="请输入组织名称"
         onChange={onChange}
       />
       <Tree
